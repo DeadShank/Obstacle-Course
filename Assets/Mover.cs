@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] float yValue;
-
+    [SerializeField] private float moveSpeed;
     private void Start()
     {
+        PrintInstrutcion();
     }
 
     private void Update()
     {
-        float xValue = Input.GetAxis("Horizontal");
-        float zValue = Input.GetAxis("Vertical");
-        transform.Translate(xValue, yValue, zValue);
+        movePlayer();
+    }
+
+    void PrintInstrutcion()
+    {
+        Debug.Log("Welcome to the game");
+        Debug.Log("String One");
+        Debug.Log("String Two");
+    }
+
+    void movePlayer()
+    {
+        float xValue = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
+        float zValue = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+        transform.Translate(xValue, 0, zValue);
     }
 }
